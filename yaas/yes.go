@@ -15,10 +15,11 @@ type yes interface {
   yes() (yesString, error)
 }
 
-func (y yesStruct) yes() (yesString, error) {
+func Yes() (yesString, error) {
+  y := newYes()
   return yesString(fmt.Sprint(y.payload)), errors.New("yaas: unable to stringify payload")
 }
 
-func NewYes() yesStruct {
+func newYes() yesStruct {
   return yesStruct{payload: yesString(yesConst)}
 }
