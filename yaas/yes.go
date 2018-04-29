@@ -1,6 +1,5 @@
 package yaas
 
-import "errors"
 import "fmt"
 
 const yesConst string = "yes"
@@ -17,7 +16,13 @@ type yes interface {
 
 func Yes() (yesString, error) {
   y := newYes()
-  return yesString(fmt.Sprint(y.payload)), errors.New("yaas: unable to stringify payload")
+  yes := yesString(fmt.Sprint(y.payload))
+
+  if (fmt.Sprint(yes) == "yes") {
+    return yesString(fmt.Sprint(y.payload)), nil
+  } else {
+    return yesString(""), fmt.Errorf("yaas: unable to stringify payload '%q'", y.payload)
+  }
 }
 
 func newYes() yesStruct {
