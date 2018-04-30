@@ -3,7 +3,7 @@ package yaas
 import "testing"
 
 func TestInverseYes(t *testing.T) {
-  want := yesString(noConst)
+  want := YesString(noConst)
   got, err := Inverse(Yes())
 
   if got != want {
@@ -12,7 +12,7 @@ func TestInverseYes(t *testing.T) {
 }
 
 func TestInverseNo(t *testing.T) {
-  want := yesString(yesConst)
+  want := YesString(yesConst)
   got, err := Inverse(Inverse(Yes()))
 
   if got != want {

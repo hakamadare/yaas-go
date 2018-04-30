@@ -2,15 +2,15 @@ package yaas
 
 import "fmt"
 
-func Inverse(y yesString, err error) (yesString, error) {
+func Inverse(y YesString, err error) (YesString, error) {
   err = fmt.Errorf("unable to invert string '%s'", y)
 
   switch {
   case yesConst == string(y):
-    y = yesString(noConst)
+    y = YesString(noConst)
     err = nil
   case noConst == string(y):
-    y = yesString(yesConst)
+    y = YesString(yesConst)
     err = nil
   }
 

@@ -3,7 +3,7 @@ package yaas
 import "testing"
 
 func TestYes(t *testing.T) {
-  want := yesString("yes")
+  want := YesString("yes")
   got, err := Yes()
 
   if got != want {

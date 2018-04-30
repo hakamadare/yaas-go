@@ -10,33 +10,33 @@ var validPayloads = map[string]bool{
   noConst: true,
 }
 
-type yesString string
+type YesString string
 
 type yesStruct struct {
-  payload yesString
+  payload YesString
 }
 
 type yes interface {
-  yes() (yesString, error)
+  yes() (YesString, error)
 }
 
-func Yes() (yesString, error) {
+func Yes() (YesString, error) {
   y := newYes()
-  yes := yesString(fmt.Sprint(y.payload))
+  yes := YesString(fmt.Sprint(y.payload))
 
   if (validPayload(fmt.Sprint(yes))) {
-    return yesString(fmt.Sprint(y.payload)), nil
+    return YesString(fmt.Sprint(y.payload)), nil
   } else {
-    return yesString(""), fmt.Errorf("yaas: unable to stringify payload '%q'", y.payload)
+    return YesString(""), fmt.Errorf("yaas: unable to stringify payload '%q'", y.payload)
   }
 }
 
 func newYes() yesStruct {
-  return yesStruct{payload: yesString(yesConst)}
+  return yesStruct{payload: YesString(yesConst)}
 }
 
 func newNo() yesStruct {
-  return yesStruct{payload: yesString(noConst)}
+  return yesStruct{payload: YesString(noConst)}
 }
 
 func validPayload(s string) bool {
