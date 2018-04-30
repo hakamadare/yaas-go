@@ -23,12 +23,20 @@ type yes interface {
 func Yes() (YesString, error) {
   y := newYes()
   yes := YesString(fmt.Sprint(y.payload))
+  return yes, nil
+}
 
-  if (validPayload(fmt.Sprint(yes))) {
-    return YesString(fmt.Sprint(y.payload)), nil
+func ParsedYes(s string) (YesString, error) {
+  parsed, err := Yes()
+
+  if (validPayload(s)) {
+    parsed = YesString(s)
   } else {
-    return YesString(""), fmt.Errorf("yaas: unable to stringify payload '%q'", y.payload)
+    parsed = YesString("")
+    err = fmt.Errorf("yaas: unable to stringify payload '%s'", s)
   }
+
+  return parsed,err
 }
 
 func newYes() yesStruct {
